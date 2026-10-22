@@ -1,0 +1,107 @@
+---
+title: "설치 가이드"
+description: "Claude 데스크톱 앱부터 Node.js, Git, 휴대폰의 Expo Go까지. 회별로 필요한 것만 설치하면 됩니다."
+---
+
+화면 위쪽의 **Windows / macOS** 토글을 바꾸면 설명이 운영체제에 맞게 바뀝니다. 한꺼번에 다 설치하지 않아도 됩니다. 아래 표의 &ldquo;필요한 회&rdquo; 전에만 해 두세요.
+
+| 프로그램·계정 | 필요한 회 | 비고 |
+| --- | --- | --- |
+| [Claude 데스크톱 앱](#claude-데스크톱-앱) | 1회부터 | Claude Code는 앱의 **Code** 탭에 들어 있어요 |
+| [Node.js](#nodejs) | 4회부터 | 웹앱과 앱을 실행하는 엔진 |
+| [Git](#git) | 5회부터 | Windows는 Git for Windows |
+| [GitHub·Vercel·Supabase 계정](#계정-만들기) | 5–7회 | GitHub 계정 하나로 나머지를 가입하면 편해요 |
+| [Expo Go (휴대폰)](#expo-go) | 12회부터 | 내 휴대폰에서 앱을 바로 실행 |
+
+<Callout type="warn" title="회사·공용 PC라면">
+  보안 정책 때문에 설치가 막힐 수 있습니다. 가능하면 개인 노트북을 쓰고, 어렵다면 관리자에게 미리 설치를 요청하세요.
+</Callout>
+
+## Claude 데스크톱 앱
+
+Claude Code를 쓰려면 <Fact k="claude.plan" />이 필요합니다. 1–2회의 채팅·기획·목업은 무료 플랜으로도 상당 부분 해 볼 수 있어요.
+
+<Steps>
+<FdStep>
+[claude.com/download](https://claude.com/download)에서 운영체제에 맞는 Claude 앱을 내려받아 설치합니다.
+</FdStep>
+<FdStep>
+앱을 열고 Claude 계정으로 로그인합니다. 비밀번호와 인증은 본인이 직접 입력합니다.
+</FdStep>
+<FdStep>
+**Chat** 탭에서는 대화로 기획과 목업을, **Code** 탭에서는 폴더를 열어 실제로 만드는 일을 합니다.
+</FdStep>
+<FdStep>
+Code 탭에서 실습용 폴더(예: 문서 → claude-practice)를 고르고 `이 폴더에 어떤 파일이 있는지 알려줘`라고 써 보세요. 답이 오면 준비 완료입니다.
+</FdStep>
+</Steps>
+
+<DeepDive title="터미널로 설치하는 방법 (참고)">
+
+데스크톱 앱이면 충분하지만, 터미널에서 쓰고 싶다면 이렇게 설치합니다.
+
+<OSBlock
+  win={<>
+    <p>시작 메뉴에서 <b>PowerShell</b>을 열고 아래를 붙여 넣습니다.</p>
+    <pre><code>irm https://claude.ai/install.ps1 | iex</code></pre>
+    <p>설치가 끝나면 <b>새 PowerShell 창</b>을 열고 <code>claude --version</code>으로 확인합니다.</p>
+  </>}
+  mac={<>
+    <p><b>터미널</b> 앱(응용 프로그램 → 유틸리티)을 열고 아래를 붙여 넣습니다.</p>
+    <pre><code>curl -fsSL https://claude.ai/install.sh | bash</code></pre>
+    <p>새 터미널 창에서 <code>claude --version</code>으로 확인합니다.</p>
+  </>}
+/>
+
+출처: [Claude Code 공식 설치 문서](https://code.claude.com/docs/en/setup)
+
+</DeepDive>
+
+## Node.js
+
+4회부터 웹앱(Next.js)과, 12회부터 앱(Expo)을 실행할 때 필요합니다. 직접 설치하지 않고 Claude Code에게 맡겨도 됩니다.
+
+<PromptCard id="node-check" compact />
+
+직접 설치하려면 [nodejs.org](https://nodejs.org)에서 **LTS**(오래 지원하는 안정 버전)를 내려받아 기본값으로 설치하세요. 설치 후에는 Claude 앱을 껐다 켜야 인식됩니다.
+
+## Git
+
+5회부터 필요합니다.
+
+<OSBlock
+  win={<p><a href="https://git-scm.com/downloads/win">Git for Windows</a>를 설치합니다. 설치 중 선택지는 모두 기본값으로 두면 됩니다. Claude Code도 Git for Windows가 있으면 더 잘 동작합니다.</p>}
+  mac={<p>터미널에서 <code>git --version</code>을 입력하면, 없을 경우 설치 안내 창이 뜹니다. <b>설치</b>를 누르세요.</p>}
+/>
+
+## 계정 만들기
+
+| 서비스 | 하는 일 | 가입 |
+| --- | --- | --- |
+| GitHub | 코드를 보관하는 클라우드 (5회) | [github.com/signup](https://github.com/signup) |
+| Vercel | 웹앱을 인터넷에 공개 (6회) | [vercel.com/signup](https://vercel.com/signup) — **Continue with GitHub** |
+| Supabase | 데이터베이스와 로그인 (7회) | [supabase.com](https://supabase.com) — GitHub로 가입 |
+| Claude Console | 내 서비스에 AI 넣기 (10회) | [platform.claude.com](https://platform.claude.com) |
+| Expo | 휴대폰 앱 (12회) | [expo.dev/signup](https://expo.dev/signup) |
+
+<Callout type="info" title="같은 이메일로">
+  모든 서비스에 같은 이메일, 가능하면 GitHub 계정으로 가입하면 나중에 서로 연결하기 쉽습니다. 비밀번호는 서비스마다 다르게, 비밀번호 관리 앱에 저장해 두세요.
+</Callout>
+
+## Expo Go
+
+12회부터 만든 앱을 내 휴대폰에서 바로 실행해 보는 앱입니다.
+
+<OSBlock
+  win={<p>안드로이드 휴대폰은 <b>Play 스토어</b>, 아이폰은 <b>App Store</b>에서 &ldquo;Expo Go&rdquo;를 검색해 설치합니다. Windows 노트북으로도 아이폰에서 실행해 볼 수 있어요.</p>}
+  mac={<p>안드로이드 휴대폰은 <b>Play 스토어</b>, 아이폰은 <b>App Store</b>에서 &ldquo;Expo Go&rdquo;를 검색해 설치합니다.</p>}
+/>
+
+노트북과 휴대폰은 **같은 와이파이**에 연결해 두세요. 같은 와이파이가 어려우면 12회에서 다른 연결 방법(터널)을 안내합니다.
+
+## 설치가 끝났는지 한 번에 확인
+
+<PromptCard
+  title="설치 상태 점검"
+  text="이 컴퓨터에 Node.js와 Git이 설치돼 있는지 확인하고 버전을 표로 보여줘. 없는 것은 처음 하는 사람도 따라 할 수 있게 설치 방법을 알려줘."
+/>

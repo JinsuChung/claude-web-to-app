@@ -1,0 +1,200 @@
+@import 'tailwindcss';
+@import 'fumadocs-ui/css/neutral.css';
+@import 'fumadocs-ui/css/preset.css';
+
+/* ---------- 코그니랩스 브랜드 토큰 ----------
+ * 딥 인디고 #14123a (히어로 배경), 인디고 #4f46e5, 시안 #06b6d4 (강조)
+ */
+@theme {
+  --font-sans: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo',
+    'Malgun Gothic', system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  --color-brand-deep: #14123a;
+  --color-brand-indigo: #4f46e5;
+  --color-brand-cyan: #06b6d4;
+
+  --color-fd-background: #ffffff;
+  --color-fd-foreground: #17191c;
+  --color-fd-muted: #f4f6f9;
+  --color-fd-muted-foreground: #5b616b;
+  --color-fd-popover: #ffffff;
+  --color-fd-popover-foreground: #17191c;
+  --color-fd-card: #f7f8fa;
+  --color-fd-card-foreground: #17191c;
+  --color-fd-border: #e3e6ea;
+  --color-fd-primary: #4338ca;
+  --color-fd-primary-foreground: #ffffff;
+  --color-fd-secondary: #eef0fb;
+  --color-fd-secondary-foreground: #2e2a8a;
+  --color-fd-accent: #ecebfb;
+  --color-fd-accent-foreground: #2e2a8a;
+  --color-fd-ring: #4338ca;
+
+  --color-ok: #15803d;
+  --color-warn: #b45309;
+  --color-danger: #b91c1c;
+}
+
+.dark {
+  --color-fd-background: #0e0f17;
+  --color-fd-foreground: #e8eaed;
+  --color-fd-muted: #161a22;
+  --color-fd-muted-foreground: #a0a6b0;
+  --color-fd-popover: #141821;
+  --color-fd-popover-foreground: #e8eaed;
+  --color-fd-card: #151922;
+  --color-fd-card-foreground: #e8eaed;
+  --color-fd-border: #2a2f38;
+  --color-fd-primary: #a5b4fc;
+  --color-fd-primary-foreground: #0e1117;
+  --color-fd-secondary: #1e1c3a;
+  --color-fd-secondary-foreground: #d9dcff;
+  --color-fd-accent: #1c2536;
+  --color-fd-accent-foreground: #e8eaed;
+  --color-fd-ring: #a5b4fc;
+
+  --color-ok: #4ade80;
+  --color-warn: #fbbf24;
+  --color-danger: #f87171;
+}
+
+#nd-sidebar {
+  --color-fd-muted: #f2f4f7;
+}
+.dark #nd-sidebar {
+  --color-fd-muted: #1a1f29;
+  --color-fd-secondary: #1d2330;
+  --color-fd-muted-foreground: #b4bac4;
+}
+
+/* ---------- 기본 타이포그래피 ---------- */
+html {
+  scrollbar-gutter: stable;
+  -webkit-text-size-adjust: 100%;
+}
+html > body[data-scroll-locked] {
+  margin-right: 0px !important;
+  --removed-body-scroll-bar-size: 0px !important;
+}
+body {
+  font-family: var(--font-sans);
+  letter-spacing: -0.02em;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
+  font-feature-settings: 'ss06';
+}
+h1,
+h2 {
+  letter-spacing: -0.035em;
+}
+h3,
+h4 {
+  letter-spacing: -0.03em;
+}
+code,
+kbd,
+pre,
+.font-mono {
+  letter-spacing: 0;
+}
+
+.prose {
+  --tw-prose-body: var(--color-fd-foreground);
+  font-size: 1.0625rem;
+  line-height: 1.8;
+}
+.prose :where(p, li) {
+  line-height: 1.8;
+}
+.prose :where(strong) {
+  font-weight: 650;
+}
+.prose :where(table) {
+  font-size: 0.9375rem;
+}
+.prose :where(h2) {
+  scroll-margin-top: 5rem;
+}
+
+/* 사이드바: 회 링크는 굵게 */
+#nd-sidebar a[href^='/sessions/']:not([data-sidebar-extra]) {
+  font-weight: 600;
+  color: var(--color-fd-foreground);
+}
+#nd-sidebar a[href^='/sessions/']:not([data-sidebar-extra])[data-active='true'] {
+  color: var(--color-fd-primary);
+}
+
+/* 점선 밑줄 용어 */
+.term {
+  text-decoration: underline dotted;
+  text-underline-offset: 4px;
+  text-decoration-color: color-mix(in oklab, var(--color-fd-primary) 60%, transparent);
+  cursor: help;
+}
+
+/* ---------- 발표 모드 ---------- */
+html[data-present] {
+  font-size: 22px;
+}
+html[data-present] #nd-sidebar,
+html[data-present] #nd-toc,
+html[data-present] #nd-tocnav,
+html[data-present] [data-toc-popover],
+html[data-present] #nd-subnav,
+html[data-present] header,
+html[data-present] .present-hide {
+  display: none !important;
+}
+html[data-present] [data-slide]:not([data-slide-active]) {
+  display: none !important;
+}
+html[data-present] #nd-page {
+  max-width: 1100px;
+  margin-inline: auto;
+}
+
+/* ---------- 인쇄 ---------- */
+@media print {
+  #nd-sidebar,
+  #nd-toc,
+  #nd-tocnav,
+  #nd-subnav,
+  header,
+  footer,
+  .print-hide,
+  button {
+    display: none !important;
+  }
+  body {
+    font-size: 10.5pt;
+  }
+  .prose {
+    font-size: 10.5pt;
+  }
+  a {
+    color: inherit !important;
+    text-decoration: none !important;
+  }
+  .prompt-card,
+  .lab-step,
+  table,
+  figure,
+  pre {
+    break-inside: avoid;
+  }
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
